@@ -1,0 +1,9 @@
+{
+  "appId": "com.bub.timer",
+  "appName": "Bub Timer",
+  "webDir": "www",
+  "server": {
+    "cleartext": true,
+    "androidScheme": "http"
+  }
+}

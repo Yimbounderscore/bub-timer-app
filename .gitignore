@@ -11,3 +11,31 @@ Thumbs.db
 .idea
 .vscode
 *.sublime-workspace
+
+# Capacitor
+/www/
+/android/app/build/
+/android/.gradle/
+/android/local.properties
+/android/.idea/
+/android/.cxx/
+/android/app/release/
+/android/app/debug/
+/android/captures/
+/android/gradlew
+/android/gradlew.bat
+
+# Android
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+bin/
+gen/
+out/
+.gradle/
+build/
+local.properties
+proguard/
+*.iml

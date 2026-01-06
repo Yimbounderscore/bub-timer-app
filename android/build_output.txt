@@ -1,0 +1,72 @@
+﻿Starting a Gradle Daemon, 1 incompatible Daemon could not be reused, use --status for details
+.\gradlew : 
+At line:1 char:1
++ .\gradlew assembleDebug 
+2>&1 | Out-File -FilePath 
+build_output.txt -E ...
++ 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo           
+   : NotSpecified: (:String  
+  ) [], RemoteException
+    + FullyQualifiedErrorId  
+   : NativeCommandError
+ 
+FAILURE: Build failed with 
+an exception.
+
+* What went wrong:
+Unable to start the daemon 
+process.
+This problem might be caused 
+by incorrect configuration 
+of the daemon.
+For example, an unrecognized 
+jvm option is used.For more 
+details on the daemon, 
+please refer to https://docs.
+gradle.org/8.14.3/userguide/g
+radle_daemon.html in the 
+Gradle documentation.
+Process command line: 
+C:\Program Files (x86)\Java\j
+re1.8.0_471\bin\java.exe 
+-Xmx1536m 
+-Dfile.encoding=windows-1252 
+-Duser.country=GB 
+-Duser.language=en 
+-Duser.variant -cp C:\Users\m
+rblu\.gradle\wrapper\dists\gr
+adle-8.14.3-all\10utluxaxniiv
+4wxiphsi49nj\gradle-8.14.3\li
+b\gradle-daemon-main-8.14.3.j
+ar -javaagent:C:\Users\mrblu\
+.gradle\wrapper\dists\gradle-
+8.14.3-all\10utluxaxniiv4wxip
+hsi49nj\gradle-8.14.3\lib\age
+nts\gradle-instrumentation-ag
+ent-8.14.3.jar org.gradle.lau
+ncher.daemon.bootstrap.Gradle
+Daemon 8.14.3
+Please read the following 
+process output to find out 
+more:
+-----------------------
+Error occurred during 
+initialization of VM
+Could not reserve enough 
+space for 1572864KB object 
+heap
+
+
+* Try:
+> Run with --stacktrace 
+option to get the stack 
+trace.
+> Run with --info or --debug 
+option to get more log 
+output.
+> Run with --scan to get 
+full insights.
+> Get more help at 
+https://help.gradle.org.

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Bub Timer</string>
+    <string name="title_activity_main">Bub Timer</string>
+    <string name="package_name">com.bub.timer</string>
+    <string name="custom_url_scheme">com.bub.timer</string>
+</resources>

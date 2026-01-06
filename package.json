@@ -5,7 +5,8 @@
     "main": "main.js",
     "scripts": {
         "start": "electron .",
-        "build": "electron-packager . --overwrite --platform=win32 --arch=x64 --out=dist --prune=true"
+        "build": "electron-packager . --overwrite --platform=win32 --arch=x64 --out=dist --prune=true",
+        "build:linux": "electron-packager . --overwrite --platform=linux --arch=x64 --out=dist --prune=true"
     },
     "keywords": [],
     "author": "Bub",
@@ -15,6 +16,9 @@
         "electron-packager": "^17.1.2"
     },
     "dependencies": {
+        "@capacitor/android": "^8.0.0",
+        "@capacitor/cli": "^8.0.0",
+        "@capacitor/core": "^8.0.0",
         "node-fetch": "^3.0.0"
     }
 }
