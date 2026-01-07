@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bub Countdown</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #1a1b1e;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 10px;
+            overflow-x: hidden;
+            gap: 15px;
+        }
+
+        .video-container {
+            width: 100%;
+            max-width: 400px;
+            aspect-ratio: 16/9;
+            background: #2c2e33;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-container.hidden {
+            display: none;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-placeholder {
+            color: #555;
+            font-size: 0.9em;
+        }
+
+        .timer-section {
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        h1 {
+            font-size: 1.5em;
+            margin: 10px 0;
+            color: #ffcc00;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        #timer {
+            font-size: 3em;
+            font-weight: bold;
+            font-family: monospace;
+            background: #2c2e33;
+            padding: 15px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            border: 2px solid #ffcc00;
+        }
+
+        #target {
+            margin-top: 10px;
+            font-size: 1em;
+            color: #888;
+        }
+
+        .status {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            font-size: 0.8em;
+            color: #555;
+        }
+
+        /* Settings Button */
+        .settings-btn {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            width: 44px;
+            height: 44px;
+            background: #2c2e33;
+            border: 2px solid #ffcc00;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            z-index: 100;
+        }
+
+        .settings-btn:hover {
+            background: #3c3e43;
+        }
+
+        .settings-btn img {
+            width: 100%;
+            height: 100%;
+            filter: invert(1);
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: #2c2e33;
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid #ffcc00;
+            max-width: 300px;
+            width: 90%;
+        }
+
+        .modal h2 {
+            margin: 0 0 20px 0;
+            color: #ffcc00;
+            font-size: 1.3em;
+        }
+
+        .modal-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #444;
+        }
+
+        .modal-option:last-child {
+            border-bottom: none;
+        }
+
+        .modal-option label {
+            color: #fff;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 26px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #555;
+            transition: 0.3s;
+            border-radius: 26px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.3s;
+            border-radius: 50%;
+        }
+
+        input:checked+.toggle-slider {
+            background-color: #ffcc00;
+        }
+
+        input:checked+.toggle-slider:before {
+            transform: translateX(24px);
+        }
+
+        .swap-btn {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background: #ffcc00;
+            color: #1a1b1e;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .swap-btn:hover {
+            background: #e6b800;
+        }
+
+        .close-btn {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background: transparent;
+            color: #888;
+            border: 1px solid #555;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            background: #3c3e43;
+        }
+
+        .video-select {
+            padding: 8px 12px;
+            background: #1a1b1e;
+            color: #fff;
+            border: 1px solid #ffcc00;
+            border-radius: 6px;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+
+        .video-select:focus {
+            outline: none;
+            border-color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Top Video -->
+    <div class="video-container" id="video-top">
+        <iframe id="iframe-top"
+            src="https://www.youtube.com/embed/vTfD20dbxho?start=31&autoplay=1&mute=1&loop=1&playlist=vTfD20dbxho"
+            allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+
+    <!-- Timer Section -->
+    <div class="timer-section">
+        <h1>Next Bub Yap In:</h1>
+        <div id="timer">Loading...</div>
+        <div id="target">Target: Fetching...</div>
+    </div>
+
+    <!-- Bottom Video -->
+    <div class="video-container" id="video-bottom">
+        <iframe id="iframe-bottom"
+            src="https://www.youtube.com/embed/mn-Tlb_wfjc?autoplay=1&mute=0&loop=1&playlist=mn-Tlb_wfjc"
+            allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+
+    <!-- Settings Button -->
+    <button class="settings-btn" id="settings-btn"><img src="settings-icon.png" alt="Settings"></button>
+
+    <!-- Settings Modal -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal">
+            <h2>Video Settings</h2>
+            <div class="modal-option">
+                <label>Top Video</label>
+                <select id="select-top" class="video-select">
+                    <option value="subway" selected>Subway Surfers</option>
+                    <option value="family">Family Guy</option>
+                    <option value="minecraft">Minecraft Parkour</option>
+                </select>
+            </div>
+            <div class="modal-option">
+                <label>Bottom Video</label>
+                <select id="select-bottom" class="video-select">
+                    <option value="subway">Subway Surfers</option>
+                    <option value="family" selected>Family Guy</option>
+                    <option value="minecraft">Minecraft Parkour</option>
+                </select>
+            </div>
+            <h3 style="margin: 20px 0 10px 0; color: #ffcc00; font-size: 1.1em;">Audio</h3>
+            <div class="modal-option">
+                <label>Subway Surfers</label>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="audio-subway">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <div class="modal-option">
+                <label>Family Guy</label>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="audio-family" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <div class="modal-option">
+                <label>Minecraft Parkour</label>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="audio-minecraft">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <button class="close-btn" id="close-btn">Close</button>
+        </div>
+    </div>
+
+    <div class="status" id="status">Connecting...</div>
+
+    <script src="renderer.js"></script>
+</body>
+
+</html>

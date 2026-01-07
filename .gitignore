@@ -1,41 +1,26 @@
-node_modules
-dist
-build
-release
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
 *.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+
+# OS files
 .DS_Store
 Thumbs.db
-.idea
-.vscode
-*.sublime-workspace
 
-# Capacitor
-/www/
+# IDE
+.idea/
+.vscode/
+*.sublime-workspace
+*.iml
+
+# Android build outputs (keep source files, ignore builds)
 /android/app/build/
 /android/.gradle/
-/android/local.properties
 /android/.idea/
+/android/local.properties
 /android/.cxx/
-/android/app/release/
-/android/app/debug/
 /android/captures/
-/android/gradlew
-/android/gradlew.bat
-
-# Android
 *.apk
 *.aab
-*.ap_
-*.dex
-*.class
-bin/
-gen/
-out/
-.gradle/
-build/
-local.properties
-proguard/
-*.iml
