@@ -1,21 +1,13 @@
-# Dependencies
-node_modules/
 
-# Build outputs
+node_modules/
 dist/
 *.log
-
-# OS files
 .DS_Store
 Thumbs.db
-
-# IDE
 .idea/
 .vscode/
 *.sublime-workspace
 *.iml
-
-# Android build outputs (keep source files, ignore builds)
 /android/app/build/
 /android/.gradle/
 /android/.idea/
@@ -24,3 +16,4 @@ Thumbs.db
 /android/captures/
 *.apk
 *.aab
+*.md

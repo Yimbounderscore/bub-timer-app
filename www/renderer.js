@@ -74,7 +74,8 @@ setInterval(updateTimer, 1000);
 const VIDEOS = {
     subway: { id: 'vTfD20dbxho', name: 'Subway Surfers', duration: 3600 },
     family: { id: 'mn-Tlb_wfjc', name: 'Family Guy', duration: 2400 },
-    minecraft: { id: 'OqPxaKs8xrk', name: 'Minecraft Parkour', duration: 3600 }
+    minecraft: { id: 'OqPxaKs8xrk', name: 'Minecraft Parkour', duration: 3600 },
+    reddit: { id: 'RaONUk-Y5tQ', name: 'Reddit Stories', duration: 3600 }
 };
 
 // Current selections (which video is in which slot)
@@ -85,7 +86,8 @@ let bottomVideo = 'family';
 let muteStates = {
     subway: true,
     family: false,
-    minecraft: true
+    minecraft: true,
+    reddit: true
 };
 
 // Generate random start time
@@ -114,6 +116,7 @@ const selectBottom = document.getElementById('select-bottom');
 const audioSubway = document.getElementById('audio-subway');
 const audioFamily = document.getElementById('audio-family');
 const audioMinecraft = document.getElementById('audio-minecraft');
+const audioReddit = document.getElementById('audio-reddit');
 
 // Refresh iframes with current settings
 function refreshIframes() {
@@ -171,6 +174,11 @@ audioFamily.addEventListener('change', () => {
 
 audioMinecraft.addEventListener('change', () => {
     muteStates.minecraft = !audioMinecraft.checked;
+    refreshIframes();
+});
+
+audioReddit.addEventListener('change', () => {
+    muteStates.reddit = !audioReddit.checked;
     refreshIframes();
 });
 
