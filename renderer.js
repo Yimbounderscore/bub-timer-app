@@ -1,4 +1,4 @@
-const BOT_API_URL = "http://172.237.105.170:8080/time";
+const BOT_API_URL = "http://172.237.110.96:8080/time";
 let targetDate = null;
 
 async function fetchTime() {

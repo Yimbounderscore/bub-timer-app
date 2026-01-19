@@ -1,4 +1,4 @@
-const BOT_API_URL = "http://172.237.105.170:8080/time";
+const BOT_API_URL = "http://172.237.110.96:8080/time";
 let targetDate = null;
 
 const isCapacitor = typeof window !== 'undefined' && window.Capacitor;
@@ -9,7 +9,6 @@ async function fetchTime() {
         let data;
 
         if (isCapacitor && window.Capacitor.Plugins.CapacitorHttp) {
-
             const response = await window.Capacitor.Plugins.CapacitorHttp.get({
                 url: BOT_API_URL
             });
